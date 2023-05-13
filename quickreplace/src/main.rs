@@ -21,7 +21,8 @@ fn main() {
                 "{} failed to read from file '{}': {:?}",
                 "Error: ".red().bold(),
                 args.filename,
-                e);
+                e,
+            );
             std::process::exit(1);
         },
     };
@@ -32,7 +33,8 @@ fn main() {
             eprintln!(
                 "{} failed to replace text {:?}",
                 "Error: ".red().bold(),
-                e);
+                e,
+            );
             std::process::exit(1);
         }
     };
@@ -44,7 +46,8 @@ fn main() {
                 "{} failed to write to file '{}': {:?}",
                 "Error: ".red().bold(),
                 args.filename,
-                e);
+                e,
+            );
             std::process::exit(1);
         }
     }
@@ -63,7 +66,8 @@ fn parse_args() -> Arguments {
         eprintln!(
             "{} wrong number of arguments: expected 4, got {}.",
             "Error:".red().bold(),
-            args.len());
+            args.len(),
+        );
         std::process::exit(1);
     }
 
