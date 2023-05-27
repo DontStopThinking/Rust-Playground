@@ -1,3 +1,5 @@
+use std::{println, format, vec};
+
 fn main() {
     let eye = 'ಠ';
     println!("{}_{}", eye, eye);
@@ -80,8 +82,9 @@ fn main() {
         );
     }
 
-    let v: Vec<f64> = vec![0.0,  0.707,  1.0,  0.707];
-    let a: [f64; 4] =     [0.0, -0.707, -1.0, -0.707];
+    let v: Vec<f64> = vec![0.0,  0.707,  1.0,  0.707];  // Vector shorthand syntax
+    let a: [f64; 4] =     [0.0, -0.707, -1.0, -0.707];  // Slice. It's a 'fat pointer' - contains a
+                                                        // pointer to 1st element and the number of elements.
 
     let sv: &[f64] = &v;
     let sa: &[f64] = &a;
@@ -110,6 +113,7 @@ fn main() {
     let default_win_install_path = r"C:\Program Files\Gorillas";    // Raw string
     println!("{}", default_win_install_path);
 
+    // when we want to include double quotes in the string
     println!(r###"
         This raw string started with 'r###'.
         Therefore it does not end until we reach a quote mark('"')
@@ -118,8 +122,41 @@ fn main() {
 
     let method = b"GET";    // Byte string. It's actually a slice &[u8; 3]
     assert_eq!(method, &[b'G', b'E', b'T']);
+
+    let noodles = "noodles".to_string();    // noodles is a String
+    let oodles = &noodles[1..]; // _oodles is a &str reference to the text belonging to noodles
+    let poodles = "ಠ_ಠ";
+
+    println!("{}", noodles);
+    println!("{}", oodles);
+    println!("{}", poodles);
+
+    assert_eq!(poodles.len(), 7);   // len() is measure in bytes, not characters
+    assert_eq!(poodles.chars().count(), 3);
+
+    // String
+
+    assert_eq!(format!("{}°{:02}′{02}″N", 24, 5, 23), "24°05′23″N".to_string());
+
+    let bits = vec!["veni", "vidi", "vici"];
+    assert_eq!(bits.concat(), "venividivici");
+    assert_eq!(bits.join(", "), "veni, vidi, vici");
+
+    assert!("ONE".to_lowercase() == "one"); // 2 strings are equal is they contain the same characters
+                                            // in the same order.
+    assert!("peanut".contains("nut"));
+
+    for word in "veni, vidi, vici".split(", ") {
+        assert!(word.starts_with("v"));
+    }
+
+    // Type aliases
+    type Bytes = Vec<u8>;
+    let post: Bytes = vec![b'P', b'O', b'S', b'T'];
+    println!("{:?}", post);
 }
 
+// Takes in a slice reference so it'll work arrays as well as vectors
 fn print_slice(n: &[f64]) {
     for elt in n {
         print!("{} ", elt);
