@@ -1,4 +1,4 @@
-use std::{println, format, vec};
+use std::{format, println, vec};
 
 fn main() {
     let eye = 'ಠ';
@@ -28,7 +28,7 @@ fn main() {
     let taxonomy = ["Animalia", "Arthoropoda", "Insecta"];
     assert_eq!(taxonomy.len(), 3);
 
-    let sieve = [true; 5];  // Array of 5 elements, all true.
+    let sieve = [true; 5]; // Array of 5 elements, all true.
     for i in 0..sieve.len() {
         println!("sieve {}", sieve[i]);
     }
@@ -37,7 +37,7 @@ fn main() {
     chaos.sort();
     assert_eq!(chaos, [1, 3, 5, 10, 15]);
 
-    let mut primes = vec![2, 3, 5, 7];  // Shorthand syntax to create vector. Similar to array.
+    let mut primes = vec![2, 3, 5, 7]; // Shorthand syntax to create vector. Similar to array.
     assert_eq!(primes.iter().product::<i32>(), 210);
 
     primes.push(11);
@@ -46,8 +46,8 @@ fn main() {
 
     let rows = 640;
     let cols = 480;
-    let new_pixel_buffer = vec![0; rows * cols];    // Shorthand for vector of specific length,
-                                                    // all set to same value. Similar to array.
+    let new_pixel_buffer = vec![0; rows * cols]; // Shorthand for vector of specific length,
+                                                 // all set to same value. Similar to array.
     assert_eq!(new_pixel_buffer.len(), rows * cols);
 
     let mut pal = Vec::new();
@@ -61,7 +61,7 @@ fn main() {
     assert_eq!(v, [0, 1, 2, 3, 4]);
 
     let mut palindrome = vec!["a man", "a plan", "a canal", "panama"];
-    palindrome.reverse();   // reverse() is a slice method. Can be used on both arrays and vectors.
+    palindrome.reverse(); // reverse() is a slice method. Can be used on both arrays and vectors.
     assert_eq!(palindrome, vec!["panama", "a canal", "a plan", "a man"]);
 
     let mut v = vec!["Snow Puff", "Glass Gem"];
@@ -82,9 +82,9 @@ fn main() {
         );
     }
 
-    let v: Vec<f64> = vec![0.0,  0.707,  1.0,  0.707];  // Vector shorthand syntax
-    let a: [f64; 4] =     [0.0, -0.707, -1.0, -0.707];  // Slice. It's a 'fat pointer' - contains a
-                                                        // pointer to 1st element and the number of elements.
+    let v: Vec<f64> = vec![0.0, 0.707, 1.0, 0.707]; // Vector shorthand syntax
+    let a: [f64; 4] = [0.0, -0.707, -1.0, -0.707]; // Slice. It's a 'fat pointer' - contains a
+                                                   // pointer to 1st element and the number of elements.
 
     let sv: &[f64] = &v;
     let sa: &[f64] = &a;
@@ -92,38 +92,44 @@ fn main() {
     println!("slice of vector: {:?}", sv);
     println!("slice of array: {:?}", sa);
 
-    print_slice(&a);    // Works on arrays.
-    print_slice(&v);    // Works on vectors.
-    print_slice(&v[0..2]);  // Print the first two elements of v.
-    print_slice(&a[2..]);   // Print elements of a starting with a[2].
-    print_slice(&sv[1..3]);   // Print v[1] and v[2].
+    print_slice(&a); // Works on arrays.
+    print_slice(&v); // Works on vectors.
+    print_slice(&v[0..2]); // Print the first two elements of v.
+    print_slice(&a[2..]); // Print elements of a starting with a[2].
+    print_slice(&sv[1..3]); // Print v[1] and v[2].
 
     let speech = "\"Ouch!\" said the well.\n";
     print!("{}", speech);
 
     // A string may span multiple lines. Newline character and spaces are included.
-    println!("In the room the women come and go,
-        Singing of Mount Abora");
+    println!(
+        "In the room the women come and go,
+        Singing of Mount Abora"
+    );
 
     // Newline and leading spaces dropped.
-    println!("It was a bright, cold day in April, and \
+    println!(
+        "It was a bright, cold day in April, and \
         there were four of us-\
-        more or less.");
+        more or less."
+    );
 
-    let default_win_install_path = r"C:\Program Files\Gorillas";    // Raw string
+    let default_win_install_path = r"C:\Program Files\Gorillas"; // Raw string
     println!("{}", default_win_install_path);
 
     // when we want to include double quotes in the string
-    println!(r###"
+    println!(
+        r###"
         This raw string started with 'r###'.
         Therefore it does not end until we reach a quote mark('"')
         followed immediately by three pound signs ('###'):
-        "###);
+        "###
+    );
 
-    let method = b"GET";    // Byte string. It's actually a slice &[u8; 3]
+    let method = b"GET"; // Byte string. It's actually a slice &[u8; 3]
     assert_eq!(method, &[b'G', b'E', b'T']);
 
-    let noodles = "noodles".to_string();    // noodles is a String
+    let noodles = "noodles".to_string(); // noodles is a String
     let oodles = &noodles[1..]; // _oodles is a &str reference to the text belonging to noodles
     let poodles = "ಠ_ಠ";
 
@@ -131,12 +137,15 @@ fn main() {
     println!("{}", oodles);
     println!("{}", poodles);
 
-    assert_eq!(poodles.len(), 7);   // len() is measure in bytes, not characters
+    assert_eq!(poodles.len(), 7); // len() is measure in bytes, not characters
     assert_eq!(poodles.chars().count(), 3);
 
     // String
 
-    assert_eq!(format!("{}°{:02}′{02}″N", 24, 5, 23), "24°05′23″N".to_string());
+    assert_eq!(
+        format!("{}°{:02}′{02}″N", 24, 5, 23),
+        "24°05′23″N".to_string()
+    );
 
     let bits = vec!["veni", "vidi", "vici"];
     assert_eq!(bits.concat(), "venividivici");
